@@ -25,6 +25,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #include <alarm.h>
 #include <epicsTime.h>
@@ -78,6 +79,27 @@ static void sprint_long (char *ret, dbr_long_t val, IntFormatT outType)
                 ret[31-i-skip] = '0' + bit;
             }
         }
+    }
+    if (outType == human) {
+        int divs = 0;
+        ldiv_t d = {0L, 0L};
+        const char *fmt[7] = {
+            "%d",
+            "%d.%dK",
+            "%d.%dM",
+            "%d.%dG",
+            "%d.%dT",
+            "%d.%dP",
+            "%d.%dE"
+        };
+        while (val > 1000) {
+            d = ldiv(val, 1000);
+            val = d.quot;
+            divs++;
+        }
+        d.rem = round(d.rem / 100.0);
+        sprintf(ret, fmt[divs], d.quot, d.rem);
+
     }
     else {
         const char *fmt[4] = { /* Order must match the enum IntFormatT */

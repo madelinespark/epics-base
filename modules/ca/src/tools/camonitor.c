@@ -329,6 +329,7 @@ int main (int argc, char *argv[])
             case 'x': outType = hex; break;    /* x print Hex */
             case 'b': outType = bin; break;    /* b print Binary */
             case 'o': outType = oct; break;    /* o print Octal */
+            case 'h': outType = human; break;  /* h print human-readable */
             default :
                 outType = dec;
                 fprintf(stderr, "Invalid argument '%s' "

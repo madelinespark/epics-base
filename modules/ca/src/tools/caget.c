@@ -94,11 +94,13 @@ static void usage (void)
     "  -lx:     Round to long integer and print as hex number\n"
     "  -lo:     Round to long integer and print as octal number\n"
     "  -lb:     Round to long integer and print as binary number\n"
+    "  -lh:     Round to long integer and print as human-readable number\n"
     "Integer number format:\n"
     "  Default: Print as decimal number\n"
     "  -0x: Print as hex number\n"
     "  -0o: Print as octal number\n"
     "  -0b: Print as binary number\n"
+    "  -0h: Print as human-readable number\n"
     "Alternate output field separator:\n"
     "  -F <ofs>: Use <ofs> as an alternate output field separator\n"
     "\nExample: caget -a -f8 my_channel another_channel\n"
@@ -489,6 +491,7 @@ int main (int argc, char *argv[])
             case 'x': outType = hex; break;    /* x print Hex */
             case 'b': outType = bin; break;    /* b print Binary */
             case 'o': outType = oct; break;    /* o print Octal */
+            case 'h': outType = human; break;  /* h print human-readable */
             default :
                 outType = dec;
                 fprintf(stderr, "Invalid argument '%s' "

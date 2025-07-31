@@ -62,7 +62,7 @@
 typedef enum { absolute, relative, incremental, incrementalByChan } TimeT;
 
 /* Output formats for integer data types */
-typedef enum { dec, bin, oct, hex } IntFormatT;
+typedef enum { dec, bin, oct, hex, human } IntFormatT;
 
 /* Structure representing one PV (= channel) */
 typedef struct
